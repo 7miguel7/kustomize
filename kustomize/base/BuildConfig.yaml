@@ -1,0 +1,41 @@
+﻿apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: myapplication
+  namespace: mynamespace
+  labels:
+    name: myapplication
+    version: "1.0"
+    component: worker
+    part-of: myapplication
+    managed-by: kustomize
+    owner: 7miguel7
+    project: myapplication
+    created-by: 7miguel7
+spec:
+  failedBuildsHistoryLimit: 3
+  output:
+    to:
+      kind: ImageStreamTag
+      name: myapplication:latest
+      namespace: 'mynamespace'
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+  runPolicy: Serial
+  source:
+    git:
+      uri: 'https://github.com/7miguel7/kustomize.git'
+      ref: development
+    type: Git
+    contextDir: Inbound
+  strategy:
+    sourceStrategy:
+      env:
+        - name: DOTNET_STARTUP_PROJECT
+          value: myapplication/superapp.csproj
+      from:
+        kind: ImageStreamTag
+        name: 'dotnet:6.0'
+        namespace: openshift
+    type: Source

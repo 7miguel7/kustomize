@@ -1,0 +1,20 @@
+﻿apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myapplication
+  labels:
+    name: myapplication
+    version: "1.0"
+    component: worker
+    part-of: myapplication
+    managed-by: kustomize
+    owner: 7miguel7
+    project: myapplication
+    created-by: 7miguel7
+spec:
+  storageClassName: superfastssd
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

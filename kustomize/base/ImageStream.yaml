@@ -1,0 +1,16 @@
+﻿apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: myapplication
+  labels:
+    name: myapplication
+    version: "1.0"
+    component: worker
+    part-of: myapplication
+    managed-by: kustomize
+    owner: 7miguel7
+    project: myapplication
+    created-by: 7miguel7
+spec:
+  lookupPolicy:
+    local: true

@@ -1,0 +1,15 @@
+﻿apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - BuildConfig.yaml
+  - DeploymentConfig.yaml
+  - ImageStream.yaml
+  - PersistentVolumeClaim.yaml
+  - Route.yaml
+  - Service.yaml
+  - RoleBinding.yaml
+  
+generatorOptions:
+  disableNameSuffixHash: true
+  
